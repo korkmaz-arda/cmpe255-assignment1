@@ -87,9 +87,7 @@ cells top to bottom; each section depends on variables defined earlier in
 the notebook (`X`/`y`, `X_train`/`X_test`, `models`, etc.).
 
 ---
-<!--
-**Claude Code transcript:** `TODO.html`
 
-**YouTube walkthrough:** `TODO`
+**Claude Code transcript:** `claude-code-session.html`
 
--->
+**YouTube walkthrough:** [Link to be added]

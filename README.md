@@ -14,9 +14,7 @@ Reproductions of selected data science experiments using an agentic coding assis
 
 See [`part2/`](part2/) for the individual projects and supporting materials.
 
-<!--
 ## Videos
 
 * **Part 1 YouTube Walkthrough:** [Link to be added]
 * **Part 2 YouTube Walkthrough:** [Link to be added]
--->

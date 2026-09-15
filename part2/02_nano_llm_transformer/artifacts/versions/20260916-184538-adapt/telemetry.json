@@ -1,0 +1,202 @@
+{
+ "version": "20260916-184538-adapt",
+ "created": "2026-09-16T18:45:39",
+ "objective": "masked next-character cross-entropy on assistant reply characters and their EOS",
+ "training_from": "the earlier trained NanoLlama checkpoint 20260916-181935-run (stage-2 conversation adaptation; no external pretrained model was ever used)",
+ "stage": 2,
+ "initialized_from": {
+  "version": "20260916-181935-run",
+  "validation": {
+   "tinystories": {
+    "loss": 0.42555377935907646,
+    "perplexity": 1.5304377098498843,
+    "target_tokens": 863500,
+    "windows": 1907
+   },
+   "everyday": {
+    "loss": 0.8715864987139446,
+    "perplexity": 2.3907006900141408,
+    "target_tokens": 54430,
+    "windows": 121
+   },
+   "kb": {
+    "loss": 2.9661388854744324,
+    "perplexity": 19.416804170098427,
+    "target_tokens": 15508,
+    "windows": 92
+   }
+  },
+  "selection_loss": 0.6485701390365105
+ },
+ "parameters": 4773120,
+ "config": {
+  "epochs": 5,
+  "batch_size": 32,
+  "lr": 0.0003,
+  "weight_decay": 0.01,
+  "beta1": 0.9,
+  "beta2": 0.95,
+  "warmup_frac": 0.05,
+  "min_lr_frac": 0.05,
+  "grad_clip": 1.0,
+  "seed": 1234,
+  "everyday_repeat": 2,
+  "kb_repeat": 4,
+  "max_story_windows": null,
+  "story_windows_per_epoch": 3000,
+  "init_from": "/home/user/dev/cmpe255/assignment-1/cmpe255-assignment1/part2/02_nano_llm_transformer/artifacts/versions/20260916-181935-run",
+  "compile": true,
+  "tag": "adapt",
+  "model": {
+   "vocab_size": 104,
+   "n_layers": 6,
+   "d_model": 256,
+   "n_heads": 8,
+   "d_ff": 688,
+   "context_length": 1024,
+   "rope_base": 10000.0,
+   "norm_eps": 1e-05
+  }
+ },
+ "optimizer": {
+  "name": "AdamW",
+  "betas": [
+   0.9,
+   0.95
+  ],
+  "weight_decay": 0.01,
+  "weight_decay_applies_to": "matrices and embeddings (not RMSNorm gains)",
+  "grad_clip_norm": 1.0,
+  "schedule": "linear warmup 5% of steps, cosine decay to 5% of peak"
+ },
+ "environment": {
+  "device": "cuda",
+  "torch": "2.14.0+cu130",
+  "python": "3.11.16",
+  "cuda": "13.0",
+  "gpu": "NVIDIA GeForce RTX 5090 Laptop GPU",
+  "arch_list": [
+   "sm_75",
+   "sm_80",
+   "sm_86",
+   "sm_90",
+   "sm_100",
+   "sm_120"
+  ],
+  "capability": [
+   12,
+   0
+  ]
+ },
+ "epochs": 5,
+ "batch_size": 32,
+ "learning_rate": 0.0003,
+ "steps": 1340,
+ "steps_per_epoch": 268,
+ "curves": {
+  "train_loss": [
+   0.5615936448100736,
+   0.5262509973304456,
+   0.4967636793226737,
+   0.4768343057632838,
+   0.46632616964467954
+  ],
+  "val_loss": {
+   "tinystories": [
+    0.43015466471165675,
+    0.43397531507853215,
+    0.43517055802602056,
+    0.4362304591370512,
+    0.43644067057668645
+   ],
+   "everyday": [
+    0.8520386168301028,
+    0.8610924797331435,
+    0.8745235063958295,
+    0.8901388717446721,
+    0.8989543084294047
+   ],
+   "kb": [
+    3.0369423745002577,
+    3.1300734902953313,
+    3.2365421652332667,
+    3.2696114757302683,
+    3.2856941528162884
+   ]
+  },
+  "val_selection": [
+   0.6410966407708798,
+   0.6475338974058378,
+   0.654847032210925,
+   0.6631846654408616,
+   0.6676974895030456
+  ],
+  "lr": [
+   0.0002829920045497473,
+   0.0002150634741314755,
+   0.00012285933404773016,
+   4.526382031771544e-05,
+   1.5000433937903409e-05
+  ],
+  "grad_norm": [
+   0.14578510398295388,
+   0.15358151962508015,
+   0.15811833338950998,
+   0.16082086136092,
+   0.1611340366192718
+  ],
+  "epoch_seconds": [
+   12.724475145339966,
+   11.34406566619873,
+   11.304319381713867,
+   11.307511568069458,
+   11.294861555099487
+  ],
+  "tokens_per_second": [
+   483195.48977638636,
+   542745.0070520545,
+   545367.7299645892,
+   544077.2678378399,
+   544985.6087187587
+  ]
+ },
+ "selection_definition": "selection_loss = (tinystories_val_loss + everyday_val_loss) / 2. The saved checkpoint is the epoch with the lowest selection_loss; a later epoch replaces an earlier one only if it is lower by more than 0.001 nats (effective ties keep the earlier epoch). KB validation loss is computed every epoch as a diagnostic but is not used for selection: KB validation entries contain answers never seen in training.",
+ "selection_sources": [
+  "tinystories",
+  "everyday"
+ ],
+ "diagnostic_only_sources": [
+  "kb"
+ ],
+ "best_epoch": 1,
+ "best_val_selection_loss": 0.6410966407708798,
+ "final_train_loss": 0.46632616964467954,
+ "wall_clock_seconds": 65.4078905582428,
+ "input_tokens_seen": 30778052,
+ "mean_training_tokens_per_second": 530882.7621618576,
+ "mixture": {
+  "repeats": {
+   "tinystories": 1,
+   "everyday": 2,
+   "kb": 4
+  },
+  "target_tokens_unique": {
+   "tinystories": 50437275,
+   "everyday": 1030426,
+   "kb": 52875
+  },
+  "target_tokens_per_epoch": {
+   "tinystories": 1356984,
+   "everyday": 2060852,
+   "kb": 211500
+  },
+  "effective_share": {
+   "tinystories": 0.37389318597120796,
+   "everyday": 0.5678316915270452,
+   "kb": 0.05827512250174688
+  },
+  "story_windows_per_epoch": 3000,
+  "note": "repeats apply to the training split only; TinyStories uses a fresh seeded subset of training windows each epoch (shares are expected values)"
+ },
+ "perplexity_definition": "exp(mean cross-entropy in nats per character), exponent capped at 20"
+}

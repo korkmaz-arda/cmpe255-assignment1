@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NanoLlama Studio</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦙</text></svg>">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◈</span>
+    <div>
+      <div class="brand-name">NanoLlama <span class="muted">Studio</span></div>
+      <div class="brand-sub">A tiny character-level transformer trained from scratch</div>
+    </div>
+  </div>
+  <nav class="tabs" role="tablist">
+    <button class="tab active" data-tab="chat" role="tab">Chat</button>
+    <button class="tab" data-tab="attention" role="tab">Attention</button>
+    <button class="tab" data-tab="tokenizer" role="tab">Tokenizer</button>
+    <button class="tab" data-tab="telemetry" role="tab">Telemetry</button>
+    <button class="tab" data-tab="architecture" role="tab">Architecture</button>
+  </nav>
+  <div class="top-right">
+    <div id="health" class="health-pill mono">checking model…</div>
+    <button id="open-retrain" class="btn btn-ghost">Retrain</button>
+  </div>
+</header>
+
+<div id="global-banner" class="banner banner-error hidden"></div>
+
+<main>
+<!-- ============================== CHAT ============================== -->
+<section id="view-chat" class="view active">
+  <aside class="sidebar panel">
+    <h3>Persona</h3>
+    <select id="persona"></select>
+    <label class="field-label" for="system">System prompt <span class="tip" data-tip="Text placed after the <|system|> marker. The model was trained with six fixed personas; other system prompts are out of distribution.">?</span></label>
+    <textarea id="system" rows="3"></textarea>
+
+    <h3>Decoding</h3>
+    <div class="slider">
+      <label>Temperature <span class="tip" data-tip="Divides the logits before sampling. Higher = more random. At 0.15 or below the model picks the single most likely character (greedy). Default 0 = greedy, the same baseline used by the evaluation samples.">?</span><output id="temperature-out" class="mono"></output></label>
+      <input type="range" id="temperature" min="0" max="1.5" step="0.05" value="0">
+    </div>
+    <div class="slider">
+      <label>Top-p <span class="tip" data-tip="Nucleus sampling: keep the smallest set of characters whose probabilities add up to p.">?</span><output id="top_p-out" class="mono"></output></label>
+      <input type="range" id="top_p" min="0.1" max="1" step="0.05" value="0.9">
+    </div>
+    <div class="slider">
+      <label>Top-k <span class="tip" data-tip="Only the k most likely characters can be sampled.">?</span><output id="top_k-out" class="mono"></output></label>
+      <input type="range" id="top_k" min="1" max="100" step="1" value="40">
+    </div>
+    <div class="slider">
+      <label>Repetition penalty <span class="tip" data-tip="Lowers the scores of characters generated in the last 32 steps (positive logits divided, negative multiplied). 1.0 = off (default); it is an optional heuristic and also applies to greedy decoding when raised.">?</span><output id="repetition_penalty-out" class="mono"></output></label>
+      <input type="range" id="repetition_penalty" min="1" max="2" step="0.05" value="1">
+    </div>
+    <div class="slider">
+      <label>Max new characters<output id="max_new_tokens-out" class="mono"></output></label>
+      <input type="range" id="max_new_tokens" min="20" max="600" step="10" value="300">
+    </div>
+    <label class="check"><input type="checkbox" id="loop_guard"> Loop guard (optional heuristic) <span class="tip" data-tip="Optional anti-repetition heuristic, off by default. Blocks a third identical character in a row, and blocks the character that followed an earlier copy of the last three characters. It can stop loops, but it also corrupts ordinary English (for example repeated 'the'), so it does not generally improve quality. It never affects loss metrics.">?</span></label>
+    <label class="field-label" for="seed">Seed (optional) <span class="tip" data-tip="Fix the random sampler so the same settings give the same reply.">?</span></label>
+    <input type="number" id="seed" placeholder="random">
+
+    <h3>Presets</h3>
+    <div id="presets" class="presets"></div>
+  </aside>
+
+  <div class="chat-main panel">
+    <div class="metrics-strip mono">
+      <div class="metric"><span class="metric-label">tokens/s</span><span id="m-tps">–</span></div>
+      <div class="metric"><span class="metric-label">TTFT</span><span id="m-ttft">–</span></div>
+      <div class="metric"><span class="metric-label">tokens</span><span id="m-count">–</span></div>
+      <div class="metric"><span class="metric-label">total</span><span id="m-total">–</span></div>
+      <div class="metric"><span class="metric-label">KV cache</span><span id="m-cache">–</span></div>
+      <button id="reset-chat" class="btn btn-ghost btn-small">Reset</button>
+    </div>
+    <div class="honesty-note">Replies are generated one character at a time by NanoLlama itself; nothing is looked up or pre-written. A model this small makes mistakes and invents facts. Metrics are measured on this machine (tokens = characters).</div>
+    <div id="transcript" class="transcript"></div>
+    <form id="chat-form" class="composer">
+      <textarea id="message" rows="2" placeholder="Message NanoLlama…  (Enter to send, Shift+Enter for a new line)"></textarea>
+      <button id="send" class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============================== ATTENTION ============================== -->
+<section id="view-attention" class="view">
+  <div class="panel">
+    <h2>Attention inspector</h2>
+    <p class="lede">Every layer and head of causal self-attention for a prompt. Each grid row is a <b>query</b> character; each column is a <b>key</b> it may look at. Cells above the diagonal are the future and are blocked by the causal mask. Prompts are BOS-prefixed and cut to 64 characters.</p>
+    <form id="attn-form" class="inline-form">
+      <input id="attn-text" type="text" value="Once upon a time, a little owl" maxlength="400">
+      <button class="btn btn-primary" id="attn-btn" type="submit"><span class="btn-label">Inspect</span></button>
+    </form>
+    <div id="attn-error" class="banner banner-error hidden"></div>
+    <div id="attn-hover" class="hover-banner mono">Hover a cell to see which character attends to which.</div>
+    <div class="attn-controls">
+      <div id="layer-buttons" class="seg"></div>
+      <div class="ramp-legend"><span class="mono">0%</span><span class="ramp"></span><span class="mono">100%</span><span class="swatch inert"></span><span class="muted">masked (future)</span></div>
+    </div>
+    <div id="attn-grids" class="attn-grids"></div>
+  </div>
+</section>
+
+<!-- ============================== TOKENIZER ============================== -->
+<section id="view-tokenizer" class="view">
+  <div class="panel">
+    <h2>Tokenizer studio</h2>
+    <p class="lede">NanoLlama's vocabulary is fixed: 6 control tokens plus one id per printable ASCII character, newline, tab and carriage return. Nothing is learned from data. One character = one token.</p>
+    <textarea id="tok-text" rows="3">Hello! Tell me a story about a brave little fox.</textarea>
+    <div id="tok-error" class="banner banner-error hidden"></div>
+    <div class="tok-grid">
+      <div>
+        <div class="stats mono">
+          <div class="stat"><span id="tok-count">–</span><small>tokens</small></div>
+          <div class="stat"><span id="tok-chars">–</span><small>characters</small></div>
+          <div class="stat"><span id="tok-ratio">–</span><small>chars / token</small></div>
+        </div>
+        <div id="tok-chips" class="chips"></div>
+        <div id="tok-note" class="muted small"></div>
+      </div>
+      <div>
+        <h3>Next-character prediction <span class="tip" data-tip="Softmax of the model's logits after reading BOS + your text (plain text, no chat template). The top 5 of 104 possible tokens.">?</span></h3>
+        <div id="tok-preds" class="preds"></div>
+      </div>
+    </div>
+    <h3>Control tokens</h3>
+    <table class="table mono-cols" id="control-table"><thead><tr><th>id</th><th>token</th><th>role</th></tr></thead><tbody></tbody></table>
+  </div>
+</section>
+
+<!-- ============================== TELEMETRY ============================== -->
+<section id="view-telemetry" class="view">
+  <div id="tel-empty" class="panel hidden"></div>
+  <div id="tel-content" class="hidden">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Training &amp; validation</h2>
+        <div id="tel-version" class="mono muted"></div>
+      </div>
+      <p class="lede" id="tel-lede"></p>
+      <div class="kpis" id="kpis"></div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Loss per epoch <span class="muted small">(cross-entropy, nats per character)</span></h3>
+          <button class="btn btn-ghost btn-small" id="chart-table-toggle">Show table</button>
+        </div>
+        <div id="loss-legend" class="legend"></div>
+        <div id="loss-chart" class="chart"></div>
+        <div id="loss-table" class="hidden"></div>
+      </div>
+      <div class="two-col">
+        <div>
+          <h3>Per-epoch validation</h3>
+          <div id="val-epochs"></div>
+        </div>
+        <div>
+          <h3>Saved epoch vs. a unigram baseline <span class="tip" data-tip="The unigram baseline predicts every character from its overall frequency in that source's training replies, ignoring context. A useful model must beat it by a clear margin.">?</span></h3>
+          <div id="val-sources"></div>
+          <h3>Training mixture</h3>
+          <div id="mixture"></div>
+        </div>
+      </div>
+      <details class="samples">
+        <summary>Validation samples and fixed probes (greedy decoding, shown as generated)</summary>
+        <div id="val-samples"></div>
+      </details>
+    </div>
+
+    <div class="panel final-panel">
+      <div class="panel-head">
+        <h2>Final held-out evaluation</h2>
+        <span id="final-badge" class="badge"></span>
+      </div>
+      <div id="final-content"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ARCHITECTURE ============================== -->
+<section id="view-architecture" class="view">
+  <div class="panel">
+    <h2>Architecture blueprint</h2>
+    <p class="lede" id="arch-lede">Dimensions below are read from the checkpoint currently being served.</p>
+    <div class="arch-grid">
+      <ol id="arch-flow" class="flow"></ol>
+      <div class="arch-cards">
+        <div class="card">
+          <h3>Rotary position embeddings (RoPE)</h3>
+          <div class="formula mono">(x₂ᵢ, x₂ᵢ₊₁) → (x₂ᵢ cos mθᵢ − x₂ᵢ₊₁ sin mθᵢ,<br>&nbsp;&nbsp;x₂ᵢ sin mθᵢ + x₂ᵢ₊₁ cos mθᵢ),&nbsp; θᵢ = 10000^(−2i/d)</div>
+          <p>Queries and keys (not values) are rotated pair by pair by an angle proportional to the position <i>m</i>. The dot product of a rotated query and key depends only on how far apart they are, so attention sees relative distance without a learned position table. NanoLlama rotates adjacent pairs (interleaved layout).</p>
+        </div>
+        <div class="card">
+          <h3>SwiGLU feed-forward</h3>
+          <div class="formula mono">FFN(x) = W₂ ( SiLU(W₁x) ⊙ W₃x )</div>
+          <p>Two parallel projections up to the hidden width; one goes through SiLU and gates the other by elementwise multiplication, then W₂ projects back down. All three projections are bias-free.</p>
+        </div>
+        <div class="card">
+          <h3>KV cache</h3>
+          <div class="formula mono">Kₜ = [Kₜ₋₁; kₜ],&nbsp; Vₜ = [Vₜ₋₁; vₜ],&nbsp; attn(qₜ, Kₜ, Vₜ)</div>
+          <p>While generating, the keys and values of earlier characters are stored per layer. Each new character runs through the network once and attends to the stored tensors instead of recomputing the whole prompt. Rotary angles are taken at the absolute position of the new character, so cached and full computations agree (verified by the test suite). The chat tab uses this path.</p>
+        </div>
+        <div class="card">
+          <h3>RMSNorm</h3>
+          <div class="formula mono">RMSNorm(x) = x / √(mean(x²) + ε) · g</div>
+          <p>Rescales each vector by its root-mean-square with a learned per-channel gain <i>g</i>; unlike LayerNorm it does not subtract the mean. Applied before attention, before the feed-forward block, and once before the output head.</p>
+        </div>
+      </div>
+    </div>
+    <h2>Glossary</h2>
+    <dl class="glossary" id="glossary"></dl>
+  </div>
+</section>
+</main>
+
+<!-- ============================== RETRAIN MODAL ============================== -->
+<div id="retrain-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="retrain-title">
+  <div class="modal-card panel">
+    <div class="panel-head">
+      <h2 id="retrain-title">Retrain NanoLlama</h2>
+      <button class="btn btn-ghost btn-small" id="close-retrain" aria-label="Close">✕</button>
+    </div>
+    <p class="small muted">Trains a new model from random weights on the training split, picks the epoch with the best validation score, checks it with a probe, then switches the server to it. The currently served model keeps answering until the new one is promoted. Test sets are never read here; the new version is <b>not finalized</b>.</p>
+    <div class="slider">
+      <label>Epochs<output id="rt-epochs-out" class="mono"></output></label>
+      <input type="range" id="rt-epochs" min="1" max="12" step="1" value="2">
+    </div>
+    <div class="slider">
+      <label>Batch size<output id="rt-batch-out" class="mono"></output></label>
+      <input type="range" id="rt-batch" min="8" max="64" step="8" value="32">
+    </div>
+    <div class="slider">
+      <label>Peak learning rate<output id="rt-lr-out" class="mono"></output></label>
+      <input type="range" id="rt-lr" min="0.0005" max="0.008" step="0.0005" value="0.002">
+    </div>
+    <label class="field-label" for="rt-budget">Training data</label>
+    <select id="rt-budget">
+      <option value="quick">Quick: seeded subset of 12,000 story windows + all chats and KB</option>
+      <option value="full">Full: every prepared training window</option>
+    </select>
+    <div id="rt-progress" class="rt-progress hidden"></div>
+    <div id="rt-error" class="banner banner-error hidden"></div>
+    <div id="rt-success" class="banner banner-success hidden"></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary" id="rt-start">Start training</button>
+    </div>
+  </div>
+</div>
+<canvas id="confetti" class="confetti"></canvas>
+<div id="tooltip" class="tooltip hidden"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

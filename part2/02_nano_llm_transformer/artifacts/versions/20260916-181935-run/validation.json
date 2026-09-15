@@ -1,0 +1,156 @@
+{
+ "split": "validation (used for checkpoint selection; not a final held-out estimate)",
+ "best_epoch": 7,
+ "selection_loss": 0.6485701390365105,
+ "selection_definition": "selection_loss = (tinystories_val_loss + everyday_val_loss) / 2. The saved checkpoint is the epoch with the lowest selection_loss; a later epoch replaces an earlier one only if it is lower by more than 0.001 nats (effective ties keep the earlier epoch). KB validation loss is computed every epoch as a diagnostic but is not used for selection: KB validation entries contain answers never seen in training.",
+ "kb_note": "KB validation loss is a diagnostic of unseen-answer generalization; it is not used for selection.",
+ "sources": {
+  "tinystories": {
+   "loss": 0.42555377935907646,
+   "perplexity": 1.5304377098498843,
+   "target_tokens": 863500,
+   "windows": 1907,
+   "unigram_reference": {
+    "loss": 3.0576890539152766,
+    "perplexity": 21.278327233071636
+   }
+  },
+  "everyday": {
+   "loss": 0.8715864987139446,
+   "perplexity": 2.3907006900141408,
+   "target_tokens": 54430,
+   "windows": 121,
+   "unigram_reference": {
+    "loss": 3.1125325989487997,
+    "perplexity": 22.477899879900512
+   }
+  },
+  "kb": {
+   "loss": 2.9661388854744324,
+   "perplexity": 19.416804170098427,
+   "target_tokens": 15508,
+   "windows": 92,
+   "unigram_reference": {
+    "loss": 3.12759389788414,
+    "perplexity": 22.819008571271038
+   }
+  }
+ },
+ "unigram_reference_definition": "add-one-smoothed character frequencies of this source's training targets, scored on the same validation positions (context-free baseline)",
+ "samples": [
+  {
+   "set": "validation:tinystories",
+   "id": "tinystories:valid:1235",
+   "system": "You are NanoLlama, a gentle storyteller who writes simple stories for children.",
+   "history_turns": 0,
+   "message": "Write a short story for young children.\nSummary: A persistent boy named Thomas follows a big bird in the sky and eventually succeeds in reaching it.",
+   "reference": "Once upon a time there was a boy called Thomas. He was very persistent and had a brilliant idea. He wanted to follow a big bird flying in the sky. He ran and ran, determined to keep up with the bird.\nHe ran so fast that he got sweaty and out of breath, but Thomas was determined and kept going. He saw the bird take off and fly even higher and thought that he would never reach it. But Thomas was persistent and kept running.\nThe bird started to fly lower and lower and Thomas kept running. Suddenly, the bird landed in a tree. Thomas had followed it the whole way and he cheered with joy. He was so proud of himself for being so persistent with his idea.\nThe end.",
+   "reply": "Once upon a time, there was a persistent boy named Thomas. He was very persistent and loved to play with his friends. One day, Thomas was walking in the park when he saw a big bird in the sky. Thomas was so happy and he wanted to sit on the bird and see what was happening.\nThomas ran to the bird and said, \"Hello, bird! What are you doing here?\" The bird replied, \"I'm so persistent to sit on the sk",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:tinystories",
+   "id": "tinystories:valid:13050",
+   "system": "You are NanoLlama, a gentle storyteller who writes simple stories for children.",
+   "history_turns": 0,
+   "message": "Write a short story for young children.\nUse these words: offer, jelly, colorful.\nStory features: Dialogue.\nInclude this sentence: Lily's mom saw that she was sad and offered her some jelly.\nSummary: Lily sees a butterfly at the park but it flies away, so her mom offers her some jelly and they enjoy it together.",
+   "reference": "Once upon a time, there was a little girl named Lily. One day, Lily went to the park with her mom. At the park, Lily saw a colorful butterfly flying in the sky. She wanted to catch it, but it flew away.\nLily's mom saw that she was sad and offered her some jelly. \"Would you like some jelly, Lily?\" her mom asked. Lily's face lit up and she said, \"Yes, please!\"\nAs they were eating the jelly, Lily's mom asked her, \"What color do you like the most, Lily?\" Lily replied, \"I like all colors, mommy!\" They continued to enjoy their colorful jelly together, happy to be spending time with each other.",
+   "reply": "Once upon a time, there was a little girl named Lily. She loved to play outside in the sunshine. One day, she went to the park with her mom. She saw a butterfly and wanted to play with it.\nLily asked her mom, \"Can I play with the butterfly?\" Her mom said, \"Sure, but be careful.\" Lily played with the butterfly for a little while. She saw the butterfly flying away and she wanted to play with it.\nLil",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:everyday",
+   "id": "everyday:train:1665",
+   "system": "You are NanoLlama, a small helpful assistant.",
+   "history_turns": 2,
+   "message": "I'm looking for some casual outfit ideas for everyday wear. I like layering, but I'm not sure where to start.",
+   "reference": "Layering is a great way to add depth to your outfits. A good starting point is to pair a simple t-shirt or tank top with a sweater or a light jacket.",
+   "reply": "That's great! Consider using a specific strength to start with a specific strength to start with a specific strength to start with a specific strength to start with a specific strength to start with a specific strength.",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:everyday",
+   "id": "everyday:train:2132",
+   "system": "You are NanoLlama, a small helpful assistant.",
+   "history_turns": 2,
+   "message": "I'm learning about the human body in school. What is the skeletal system?",
+   "reference": "The skeletal system is the framework of bones that supports and protects the body. It's made up of 206 bones in adults.",
+   "reply": "The sky is the sky to the sky and the sky is the sky. It starts to start with the sky and the sky with a bright sunlight.",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:kb",
+   "id": "kb:identity_rmsnorm:q2:ml_research",
+   "system": "You are NanoLlama, a machine learning research assistant.",
+   "history_turns": 0,
+   "message": "Explain root mean square norm.",
+   "reference": "RMSNorm divides a vector by the square root of the mean of its squared values, then multiplies by a learned gain. Unlike LayerNorm it does not subtract the mean. It keeps the scale of activations stable and is cheap to compute.",
+   "reply": "RoPE means rotary position embeddings. Each query and key vector is split into pairs of numbers, and each pair is rotated by an angle that grows with the position. When a query and a key are compared, only the difference in their positions changes the result, so attention can use relative distance.",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:kb",
+   "id": "kb:talk_joke:q3:brilliant",
+   "system": "You are NanoLlama, a brilliant and friendly assistant who explains things clearly.",
+   "history_turns": 0,
+   "message": "Say something funny.",
+   "reference": "Why did the neural network go to school? Because it wanted to improve its weights.",
+   "reply": "In a green valley lived a distance nhap it was a small box of program, and each data goes that mixed by down. It applies the chain reusts and keys all different values.  It can make mistakes, so the share it happens .",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  }
+ ],
+ "probes": [
+  {
+   "kind": "greeting",
+   "persona": "assistant",
+   "message": "Hey there! How is it going?",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "Starting atopainations like the computer or the TV in the Nationary, the Nationary TV is Kyon. They offer the Nationaranan and the Nationaranan and the Nationaranan are computed in the Nationaranan.",
+   "reply_loop_guard_on": "Starting atopainations like the computer or that helps them to consider traditious treats than the most important thing. He stays in transformatin places and follows touched them. His mom was proud of him for being so kind antival and"
+  },
+  {
+   "kind": "simple question",
+   "persona": "assistant",
+   "message": "What should I cook for dinner tonight?",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "You can check the poses on the top of the tree of the top of the tree and it has a pose on its seat. The tree has a pose and a starting steam that makes the pose really hard.",
+   "reply_loop_guard_on": "You can check the poses on that walks outside their houses, which carries a park or a special subject with a policon of surface. They also have a substance and a patch office to stay cool any survival for thanks."
+  },
+  {
+   "kind": "storytelling",
+   "persona": "storyteller",
+   "message": "Write a short story for young children.\nUse these words: kite, windy, share.\nStory features: Dialogue.",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "Once upon a time, there was a big wind that lived in the sky. One day, the thirst saw a wind and decided to kick it. It was so happy to find its friends. The wind was so shared that it started to shake and make it feel happy.\nSuddenly, the wind started to blow and the wind started to blow. The wind was so strong that it couldn't fly away. The third saw the wind and was scared. It ran away as fast ",
+   "reply_loop_guard_on": "Once upon a time, there was a big wind that lived in the sky. One day, two of this storm wanted to kit and see whatever he was. The sun wandered around another tree, but the wise one was too sharp. To keep walking and wasn't sure if he'd stayed safe.\nSuddenly, a small voice said, \"I know you want to serve my wing. It's not safar than to.\" This\nToby was so happy ants they sailed away. He knew that "
+  },
+  {
+   "kind": "out-of-distribution",
+   "persona": "assistant",
+   "message": "What is the capital of Australia?",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "Australia is resved at her respect with its reverse:\n\ndef is_prime(n):\n     for = 0\ns    ust = 1\n          return off the Wesc + r\"Issiverjacioul # ustrair ovarious lower \"respection\".",
+   "reply_loop_guard_on": "Australia is resved at her remodicess. Self-attention each structure computes and gives to take back towards a land. The children ere thank conversatiors an angle comes from both . Most counts water and becombs."
+  },
+  {
+   "kind": "out-of-distribution",
+   "persona": "python",
+   "message": "Write a Python function that sorts a list of numbers.",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "Check divisors up to the square root:\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n\nprint(is_prime(17))  # True",
+   "reply_loop_guard_on": "Check divisors up to the square root:\n\ndef is_prime(n):\n  each eagurt return towards that is too simple and allows for their mother. One morning, a little blue boy named Tim saw him anothin box than the only one enjoyed throwing them in town. Tiny was so happy thatings he had been able to eat and, so\nTim's motion watched his favorite treat. He wasn't sure what it wanted, but he'd not seen. His mum"
+  }
+ ],
+ "note": "Samples are greedy generations (loop guard off, the default) shown as-is; no quality claim is implied. Probe replies are also recorded with the loop guard on as a side-by-side diagnostic."
+}

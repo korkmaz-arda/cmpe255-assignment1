@@ -1,0 +1,18 @@
+# Local Kaggle dataset and everything derived from it (never commit)
+data/raw/
+data/processed/
+data/cache/
+*.zip
+*.csv
+*.parquet
+!tests/fixtures/**
+
+# Generated models, telemetry and run logs (regenerate with the documented commands)
+artifacts/
+logs/
+
+# Local configuration / Python noise
+.env
+__pycache__/
+*.pyc
+.pytest_cache/

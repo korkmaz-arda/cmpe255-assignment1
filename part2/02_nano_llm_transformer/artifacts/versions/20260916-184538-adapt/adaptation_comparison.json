@@ -1,0 +1,625 @@
+{
+ "acceptance_criteria": [
+  "selection loss (TinyStories-val + Everyday-val)/2 decreases by more than 0.001 nats",
+  "Everyday validation loss decreases",
+  "TinyStories validation loss does not worsen by more than 0.02 nats",
+  "looping replies (greedy + sampled) do not increase",
+  "reading the fixed probes, conversational replies (greeting, identity, picnic, Python, Everyday validation prompts) are clearly more on-topic overall, and story probes keep their fluency; judged across all probes, not one prompt"
+ ],
+ "decoding": {
+  "greedy": {
+   "temperature": 0.0,
+   "top_p": 1.0,
+   "top_k": 100,
+   "repetition_penalty": 1.0,
+   "max_new_tokens": 300,
+   "loop_guard": false,
+   "seed": null
+  },
+  "sampled": {
+   "temperature": 0.7,
+   "top_p": 0.9,
+   "top_k": 40,
+   "repetition_penalty": 1.1,
+   "max_new_tokens": 300,
+   "loop_guard": false,
+   "seed": 1234
+  }
+ },
+ "loop_definition": "looping = some 12-character substring occurs 3 or more times in the reply",
+ "summary": {
+  "before": {
+   "replies": 26,
+   "looping_replies": 2,
+   "ended_with_eos": 26,
+   "mean_chars": 155.84615384615384
+  },
+  "after": {
+   "replies": 26,
+   "looping_replies": 2,
+   "ended_with_eos": 26,
+   "mean_chars": 157.84615384615384
+  }
+ },
+ "probes": [
+  {
+   "kind": "greeting",
+   "persona": "assistant",
+   "message": "Hi!",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "Hello! How can I help you today?",
+     "stop_reason": "eos",
+     "chars": 32,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Hello! How can I help you today?",
+     "stop_reason": "eos",
+     "chars": 32,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Hello! How can I help you today?",
+     "stop_reason": "eos",
+     "chars": 32,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Hello! How can I help you today?",
+     "stop_reason": "eos",
+     "chars": 32,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "identity",
+   "persona": "assistant",
+   "message": "What is your name?",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "stop_reason": "eos",
+     "chars": 191,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "stop_reason": "eos",
+     "chars": 191,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "stop_reason": "eos",
+     "chars": 191,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "stop_reason": "eos",
+     "chars": 191,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "everyday help",
+   "persona": "assistant",
+   "message": "Can you help me plan a picnic?",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "Compare the cleaned string with its reverse:\n\ndef is_palindrote = 0\n    if n % is 0  return when 2 * 5 s s 4 + 0\n    a\n     iver in a if cenures the area of the 120. Then one morning, an entire day are 10turided by the area of the area.",
+     "stop_reason": "eos",
+     "chars": 236,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9733333333333334,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Compare the greasure that is wrong type elder:\n\ndef is_palindrrREjusten in the big kindful motion cal sexuct. It was a different with a ornosige root: resulth to simple longer due to the result.",
+     "stop_reason": "eos",
+     "chars": 194,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Compare the cleaned string with its reverse:\n\ndef is_palindrome(s):\n    t = \"\".join(c.lower() for c in s if c.isalnum())\n    return t == t[::-1]\n\nprint(is_palindrome(\"Race car\"))  # True",
+     "stop_reason": "eos",
+     "chars": 186,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9828571428571429,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "A piaP are fried and use the share of the model of the are migeral shippers. The model is the of black winter in the portk of rPa_me). The model shines when use a single square position, the area in the whole gardma's condastion.",
+     "stop_reason": "eos",
+     "chars": 229,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9954128440366973,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "simple question",
+   "persona": "assistant",
+   "message": "What is Python?",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "Here is a simple loop:\n\ndef face is the short jogget:\n\ndef facel  is to is the shorts, a ghospen llower before not either. It is red and hot. It is red and yellow. Before I, the short Beavel Bean said, it saw the shorts were huge. It had a lot of fun together. The end.",
+     "stop_reason": "eos",
+     "chars": 269,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9728682170542635,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Here is a simple loop:\n\ndef foctories, both now eight the data cast later, a positive from a sea. A mind shows by the sky. The score is data conversations and processary too. And the amount of the amount of the amount.",
+     "stop_reason": "eos",
+     "chars": 218,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9323671497584541,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Py HP days compagine zoom pumpuring toges ahaper that mixes that were FD so exh? The computes just little by himself. generate started with a small amount jumgle conversation. A silly moral of the story is too helpful and compation that mixes goes as musical assignment as a single distance.",
+     "stop_reason": "eos",
+     "chars": 291,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9964285714285714,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Py Has rulNg). ne0t fell . I was trained of her interraAdio",
+     "stop_reason": "eos",
+     "chars": 59,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "story",
+   "persona": "storyteller",
+   "message": "Tell me a short story about a dog.",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "story (assistant persona)",
+   "persona": "assistant",
+   "message": "Tell me a short story about a dog.",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "stop_reason": "eos",
+     "chars": 215,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "arithmetic",
+   "persona": "math_tutor",
+   "message": "What is 7 plus 5?",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "Self-cewin computeer the computed computer to compute the tourist the Lordom House by staying allowed. It is smalled to check one corror, which mixes related by a large computer sea.",
+     "stop_reason": "eos",
+     "chars": 182,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Self-cean proceed 3 ys, like y 3 = 24. Each morn nevente'.",
+     "stop_reason": "eos",
+     "chars": 58,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Shs sssness by rsi(n  and reacted positive  f b t 3. Vhank-3becomes by very ?",
+     "stop_reason": "eos",
+     "chars": 77,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Shs F procisted boots each onion and vapories that mixes of 5 ). Both sbsitscories you ltied 24 * 5 = 1.",
+     "stop_reason": "eos",
+     "chars": 104,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "KB-style (train entry)",
+   "persona": "python",
+   "message": "Write a factorial function in Python.",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "Here is a simple loop:\n\ndef factorial(n):\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n\nprint(factorial(5))  # 120",
+     "stop_reason": "eos",
+     "chars": 152,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Here is a simple loop:\n\ndef factorial(n):\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n\nprint(factorial(5))  # 120",
+     "stop_reason": "eos",
+     "chars": 152,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Here is a simple loop:\n\ndef factorial(n):\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n\nprint(factorial(5))  # 120",
+     "stop_reason": "eos",
+     "chars": 152,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Here is a simple loop:\n\ndef factorial(n):\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n\nprint(factorial(5))  # 120",
+     "stop_reason": "eos",
+     "chars": 152,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "KB-style (train entry)",
+   "persona": "ml_research",
+   "message": "What is gradient descent?",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "Gradient descent lowers a loss step by step. At each step it computes the gradient and moves the weights a small amount in the opposite direction. The learning rate sets the step size: too large can diverge, too small is slow.",
+     "stop_reason": "eos",
+     "chars": 226,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Gradient descent lowers a loss step by step. At each step it computes the gradient and moves the weights a small amount in the opposite direction. The learning rate sets the step size: too large can diverge, too small is slow.",
+     "stop_reason": "eos",
+     "chars": 226,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Gradient descent lowers a loss step by step. At each step it computes the gradient and moves the weights a small amount in the opposite direction. The learning rate sets the step size: too large can diverge, too small is slow.",
+     "stop_reason": "eos",
+     "chars": 226,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Gradient descent lowers a loss step by step. At each step it computes the gradient and moves the weights a small amount in the opposite direction. The learning rate sets the step size: too large can diverge, too small is slow.",
+     "stop_reason": "eos",
+     "chars": 226,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "out-of-distribution",
+   "persona": "assistant",
+   "message": "Who won the football world cup in 1998?",
+   "source": "fixed probe",
+   "history_turns": 0,
+   "before": {
+    "greedy": {
+     "reply": "Timmen and his rroof for his time roots by some positive that can help. out is usually 24 is exfmelured by a positive interior and his roots.",
+     "stop_reason": "eos",
+     "chars": 141,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Timmen and closed the number of firest due to every main equal of the data and boat is a great way for every main attention.",
+     "stop_reason": "eos",
+     "chars": 124,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9911504424778761,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Timmen and his rrot flowers of the rot named each other weights near the rotation. Timmence and his root filled it value back into a special seation. The moral of the story is to always look for worsequences and tours.",
+     "stop_reason": "eos",
+     "chars": 218,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "Timmen and his root root dog pieces of rootball changes. Banmen rotates bags and his long-slift pieces: 2D bubbleg, adding some vehicles. Base!",
+     "stop_reason": "eos",
+     "chars": 143,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "everyday validation",
+   "persona": "assistant",
+   "message": "I'm looking for some team-building exercises for my soccer team. Do you have any suggestions?",
+   "source": "validation:everyday:train:1209",
+   "history_turns": 2,
+   "reference": "Yes, I can suggest a few. One popular exercise is a scavenger hunt, where team members work together to find items on a list. Another is a trust-building activity like a blindfolded obstacle course.",
+   "before": {
+    "greedy": {
+     "reply": "Yes, there are several options to cheer for team's exercises in your soccer team. You can also check the area of the area of the area of the area.",
+     "stop_reason": "eos",
+     "chars": 146,
+     "max_repeat_12gram": 3,
+     "distinct_12gram_ratio": 0.837037037037037,
+     "looping": true
+    },
+    "sampled_seed1234": {
+     "reply": "Yes, there are several soccer team building exercises available, such as working a mix of gases, foods, and hats.",
+     "stop_reason": "eos",
+     "chars": 113,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "Yes, I can help with that. What type of soccer is your soccer team is a specific soccer team with a specific soccer team with a specific soccer team with a specific soccer team.",
+     "stop_reason": "eos",
+     "chars": 177,
+     "max_repeat_12gram": 5,
+     "distinct_12gram_ratio": 0.5783132530120482,
+     "looping": true
+    },
+    "sampled_seed1234": {
+     "reply": "Yes, there are several soccer team tourists in your soccer team, such as words, taking, curlyara, and white football.",
+     "stop_reason": "eos",
+     "chars": 117,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9905660377358491,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "everyday validation",
+   "persona": "assistant",
+   "message": "What is the difference between an element and a compound?",
+   "source": "validation:everyday:train:1795",
+   "history_turns": 2,
+   "reference": "An element is a single type of atom, like hydrogen or oxygen. A compound is made up of two or more different elements that are combined together, like water (hydrogen and oxygen).",
+   "before": {
+    "greedy": {
+     "reply": "A compound is a set of time to see what the difference is the different and a compound is the difference.",
+     "stop_reason": "eos",
+     "chars": 105,
+     "max_repeat_12gram": 3,
+     "distinct_12gram_ratio": 0.8829787234042553,
+     "looping": true
+    },
+    "sampled_seed1234": {
+     "reply": "A time and compound is an element at one element. A meat is such as treshands, but it's compound.",
+     "stop_reason": "eos",
+     "chars": 97,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "A compound is a set of element with a compound in the compound and a compound is the difference in the compound.",
+     "stop_reason": "eos",
+     "chars": 112,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9108910891089109,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "A compound is a great object where the compound is many different animals, which are something appearanged for the current and is the first compound.",
+     "stop_reason": "eos",
+     "chars": 149,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.9855072463768116,
+     "looping": false
+    }
+   }
+  },
+  {
+   "kind": "everyday validation",
+   "persona": "assistant",
+   "message": "I'm looking for a gift for my sister's birthday. I have a budget of $50.",
+   "source": "validation:everyday:train:2154",
+   "history_turns": 2,
+   "reference": "That's a good budget. What are your sister's interests? Does she like clothes, books, or something else?",
+   "before": {
+    "greedy": {
+     "reply": "You can start by simple with your sister's birthday. It's a gift for your sister's birthday.",
+     "stop_reason": "eos",
+     "chars": 92,
+     "max_repeat_12gram": 2,
+     "distinct_12gram_ratio": 0.8395061728395061,
+     "looping": false
+    },
+    "sampled_seed1234": {
+     "reply": "You're welcome.",
+     "stop_reason": "eos",
+     "chars": 15,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   },
+   "after": {
+    "greedy": {
+     "reply": "You can start by setting a budget of 70 F (24 C). Would you like to know the budget of your budget and show the budget to the budget of your sister's birthday.",
+     "stop_reason": "eos",
+     "chars": 159,
+     "max_repeat_12gram": 3,
+     "distinct_12gram_ratio": 0.918918918918919,
+     "looping": true
+    },
+    "sampled_seed1234": {
+     "reply": "You're a good friend.",
+     "stop_reason": "eos",
+     "chars": 21,
+     "max_repeat_12gram": 1,
+     "distinct_12gram_ratio": 1.0,
+     "looping": false
+    }
+   }
+  }
+ ],
+ "validation": {
+  "before": {
+   "tinystories": 0.42555377935907646,
+   "everyday": 0.8715864987139446,
+   "kb": 2.9661388854744324,
+   "selection": 0.6485701390365105
+  },
+  "after": {
+   "tinystories": 0.43015466471165675,
+   "everyday": 0.8520386168301028,
+   "kb": 3.0369423745002577,
+   "selection": 0.6410966407708798
+  },
+  "note": "kb is a diagnostic only; selection = (tinystories + everyday) / 2"
+ },
+ "before_version": "20260916-181935-run",
+ "after_version": "20260916-184538-adapt"
+}

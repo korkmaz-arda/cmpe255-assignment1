@@ -1,0 +1,9 @@
+# Committed so the documented launch command never triggers first-run onboarding.
+[browser]
+gatherUsageStats = false
+
+[server]
+headless = true
+
+[theme]
+base = "dark"

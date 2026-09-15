@@ -1,0 +1,156 @@
+{
+ "split": "validation (used for checkpoint selection; not a final held-out estimate)",
+ "best_epoch": 1,
+ "selection_loss": 0.6410966407708798,
+ "selection_definition": "selection_loss = (tinystories_val_loss + everyday_val_loss) / 2. The saved checkpoint is the epoch with the lowest selection_loss; a later epoch replaces an earlier one only if it is lower by more than 0.001 nats (effective ties keep the earlier epoch). KB validation loss is computed every epoch as a diagnostic but is not used for selection: KB validation entries contain answers never seen in training.",
+ "kb_note": "KB validation loss is a diagnostic of unseen-answer generalization; it is not used for selection.",
+ "sources": {
+  "tinystories": {
+   "loss": 0.43015466471165675,
+   "perplexity": 1.5374953014273527,
+   "target_tokens": 863500,
+   "windows": 1907,
+   "unigram_reference": {
+    "loss": 3.0576890539152766,
+    "perplexity": 21.278327233071636
+   }
+  },
+  "everyday": {
+   "loss": 0.8520386168301028,
+   "perplexity": 2.3444213604179533,
+   "target_tokens": 54430,
+   "windows": 121,
+   "unigram_reference": {
+    "loss": 3.1125325989487997,
+    "perplexity": 22.477899879900512
+   }
+  },
+  "kb": {
+   "loss": 3.0369423745002577,
+   "perplexity": 20.841420453105307,
+   "target_tokens": 15508,
+   "windows": 92,
+   "unigram_reference": {
+    "loss": 3.12759389788414,
+    "perplexity": 22.819008571271038
+   }
+  }
+ },
+ "unigram_reference_definition": "add-one-smoothed character frequencies of this source's training targets, scored on the same validation positions (context-free baseline)",
+ "samples": [
+  {
+   "set": "validation:tinystories",
+   "id": "tinystories:valid:1235",
+   "system": "You are NanoLlama, a gentle storyteller who writes simple stories for children.",
+   "history_turns": 0,
+   "message": "Write a short story for young children.\nSummary: A persistent boy named Thomas follows a big bird in the sky and eventually succeeds in reaching it.",
+   "reference": "Once upon a time there was a boy called Thomas. He was very persistent and had a brilliant idea. He wanted to follow a big bird flying in the sky. He ran and ran, determined to keep up with the bird.\nHe ran so fast that he got sweaty and out of breath, but Thomas was determined and kept going. He saw the bird take off and fly even higher and thought that he would never reach it. But Thomas was persistent and kept running.\nThe bird started to fly lower and lower and Thomas kept running. Suddenly, the bird landed in a tree. Thomas had followed it the whole way and he cheered with joy. He was so proud of himself for being so persistent with his idea.\nThe end.",
+   "reply": "Once upon a time, there was a persistent boy named Thomas. He was very persistent and loved to play with his toys. One day, he was playing with his toys when he saw a big bird in the sky. Thomas was so happy and he wanted to show it to the bird. He ran to the big bird and started to show it to the bird. Thomas was so excited to see the bird and the bird. Thomas was so happy that he started to show",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:tinystories",
+   "id": "tinystories:valid:13050",
+   "system": "You are NanoLlama, a gentle storyteller who writes simple stories for children.",
+   "history_turns": 0,
+   "message": "Write a short story for young children.\nUse these words: offer, jelly, colorful.\nStory features: Dialogue.\nInclude this sentence: Lily's mom saw that she was sad and offered her some jelly.\nSummary: Lily sees a butterfly at the park but it flies away, so her mom offers her some jelly and they enjoy it together.",
+   "reference": "Once upon a time, there was a little girl named Lily. One day, Lily went to the park with her mom. At the park, Lily saw a colorful butterfly flying in the sky. She wanted to catch it, but it flew away.\nLily's mom saw that she was sad and offered her some jelly. \"Would you like some jelly, Lily?\" her mom asked. Lily's face lit up and she said, \"Yes, please!\"\nAs they were eating the jelly, Lily's mom asked her, \"What color do you like the most, Lily?\" Lily replied, \"I like all colors, mommy!\" They continued to enjoy their colorful jelly together, happy to be spending time with each other.",
+   "reply": "Once upon a time, there was a little girl named Lily. She loved to play outside in the sunshine. One day, she went to the park with her mom. They saw a butterfly and Lily wanted to play with it.\nLily's mom saw that she was sad and offered her some jelly at the park. Lily was so happy and said, \"Thank you, mommy! I love the butterfly!\" \nAfter they played together, Lily's mom saw that she was sad an",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:everyday",
+   "id": "everyday:train:1665",
+   "system": "You are NanoLlama, a small helpful assistant.",
+   "history_turns": 2,
+   "message": "I'm looking for some casual outfit ideas for everyday wear. I like layering, but I'm not sure where to start.",
+   "reference": "Layering is a great way to add depth to your outfits. A good starting point is to pair a simple t-shirt or tank top with a sweater or a light jacket.",
+   "reply": "That's great! Start by starting with your fitness start by starting with your fitness start by starting with your fitness start by starting with your fitness start.",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:everyday",
+   "id": "everyday:train:2132",
+   "system": "You are NanoLlama, a small helpful assistant.",
+   "history_turns": 2,
+   "message": "I'm learning about the human body in school. What is the skeletal system?",
+   "reference": "The skeletal system is the framework of bones that supports and protects the body. It's made up of 206 bones in adults.",
+   "reply": "The skeletal system is the sky that offers the human body in the sky and the sun of the sky. It can be a great home that can be a great home that can be a great home.",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:kb",
+   "id": "kb:identity_rmsnorm:q2:ml_research",
+   "system": "You are NanoLlama, a machine learning research assistant.",
+   "history_turns": 0,
+   "message": "Explain root mean square norm.",
+   "reference": "RMSNorm divides a vector by the square root of the mean of its squared values, then multiplies by a learned gain. Unlike LayerNorm it does not subtract the mean. It keeps the scale of activations stable and is cheap to compute.",
+   "reply": "A rotary rotary rotates rotatles each on the model computes the rest and the direction which is not a simple position. The model simple model, and gives the negative cookedways !",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  },
+  {
+   "set": "validation:kb",
+   "id": "kb:talk_joke:q3:brilliant",
+   "system": "You are NanoLlama, a brilliant and friendly assistant who explains things clearly.",
+   "history_turns": 0,
+   "message": "Say something funny.",
+   "reference": "Why did the neural network go to school? Because it wanted to improve its weights.",
+   "reply": "In a green valley lived a drink nemp no label from the number of query layers on its achuserPosomion. Villey For the set of idents with its bespect and use a smaller village. The Terge is suited by ice on the morning, when I nleage computes the spring and the I am too small or easy to look at the store.",
+   "decoding": "greedy, loop guard off",
+   "loop_guard": false
+  }
+ ],
+ "probes": [
+  {
+   "kind": "greeting",
+   "persona": "assistant",
+   "message": "Hey there! How is it going?",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "? Readive positions for worker for worker for workers, which has been working on the week. Each has its own unique place that could be found on the floor. It can be compatible with some of the other work in the floor.",
+   "reply_loop_guard_on": "? Readive positions for worker football, but it also known forms to produce the food in that can be distracted. It includes there take a long time and thank the other power from otiming any ticket."
+  },
+  {
+   "kind": "simple question",
+   "persona": "assistant",
+   "message": "What should I cook for dinner tonight?",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "Ickn'm supported charates and training from noticine that cooking from noticine to speak to suppletions. It's also a good idea to make sure the from noticing any other person you can serve it to stay safe.",
+   "reply_loop_guard_on": "Ickn'm supported charates and training from noticine that cooking. It's a special trice to make the computer traction than trying on its space an organismber in their cool room."
+  },
+  {
+   "kind": "storytelling",
+   "persona": "storyteller",
+   "message": "Write a short story for young children.\nUse these words: kite, windy, share.\nStory features: Dialogue.",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "Once upon a time, there was a big windy wind. It was sharp and had many colors. One day, a little girl named Lily was playing outside. She saw a window and wanted to kick it. She tried to kick it, but it was too fast. She kicked it and it fell down. Lily was sad and started to cry. She knew she had to do something with her mom. The wind was sharp and the little girl was shared. She knew she was sh",
+   "reply_loop_guard_on": "Once upon a time, there was a big windy with many trees. One day, two of this winked at the start and saw a wiggle. The wind wanted to kick through them, but it wasn't too high. To keep trying, things couldn't.\nSuddenly, a bright sun came out of. This, twigs, animals stopped and, the surprising world weren't scared. Together, turning,"
+  },
+  {
+   "kind": "out-of-distribution",
+   "persona": "assistant",
+   "message": "What is the capital of Australia?",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "Yes, they would train off their hours when they are in their houses, which helps them with their houses and their houses are in their homes. They also have their house and their homes to be captivity.",
+   "reply_loop_guard_on": "Yes, they would train off thumbs to complete the trees,"
+  },
+  {
+   "kind": "out-of-distribution",
+   "persona": "python",
+   "message": "Write a Python function that sorts a list of numbers.",
+   "decoding": "greedy, loop guard off (default)",
+   "loop_guard": false,
+   "reply": "A little fish named Finn wanted to see the top of the sea. He swam up past the coral and the turtles until he saw the bright sun. A seagull said hello. Finn waved his fin, then swam back down to tell his mother about the sky.",
+   "reply_loop_guard_on": "A little fish named Finn wanted to see the top of this sea. He jumped high back and then threw splash. Back, 2 FiNn anyone has noticed to him. Finusulur because he also liked FN) and, as whenever he's a lit off."
+  }
+ ],
+ "note": "Samples are greedy generations (loop guard off, the default) shown as-is; no quality claim is implied. Probe replies are also recorded with the loop guard on as a side-by-side diagnostic."
+}

@@ -1,0 +1,10 @@
+# Customer Segmentation & Clustering Intelligence Platform
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+scikit-learn>=1.5
+joblib>=1.4
+pyarrow>=16.0
+streamlit>=1.40
+plotly>=5.22
+pytest>=8.0

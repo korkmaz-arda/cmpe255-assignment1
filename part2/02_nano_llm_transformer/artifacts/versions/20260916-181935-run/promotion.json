@@ -1,0 +1,10 @@
+{
+ "status": "promoted",
+ "probe": {
+  "prompt_chars": 55,
+  "generated_chars": 16,
+  "stop_reason": "max_new_tokens",
+  "finite_logits": true
+ },
+ "at": "2026-09-16T18:19:45"
+}

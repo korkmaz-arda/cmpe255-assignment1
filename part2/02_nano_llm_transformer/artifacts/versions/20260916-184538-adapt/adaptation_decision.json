@@ -1,0 +1,31 @@
+{
+ "decision": "rejected \u2014 not promoted; 20260916-181935-run remains active",
+ "decided_at": "2026-09-16T18:46:36",
+ "criteria_results": {
+  "selection_loss_decrease_gt_0.001": {
+   "pass": true,
+   "before": 0.6485701390365105,
+   "after": 0.6410966407708798
+  },
+  "everyday_val_decreases": {
+   "pass": true,
+   "before": 0.8715864987139446,
+   "after": 0.8520386168301028
+  },
+  "tinystories_val_worsens_le_0.02": {
+   "pass": true,
+   "before": 0.42555377935907646,
+   "after": 0.43015466471165675
+  },
+  "looping_replies_not_increased": {
+   "pass": true,
+   "before": 2,
+   "after": 2
+  },
+  "probes_clearly_more_on_topic": {
+   "pass": false,
+   "judgment": "No clear improvement across the fixed probes. Greeting, identity, both dog-story probes and both KB-style probes are identical before/after (the dog-story prompts return a memorized KB rain story in both). 'Can you help me plan a picnic?' went from garbled code to a verbatim, off-topic KB palindrome answer (greedy) and garbled prose (sampled). 'What is Python?' and the arithmetic probe are garbled in both, arguably worse after. Everyday validation prompts are mixed, with one new greedy loop. Small validation-loss gains did not translate into visibly better relevance."
+  }
+ },
+ "note": "Decision used validation losses and validation-safe probes only; no test split was read."
+}

@@ -1,0 +1,281 @@
+{
+ "manifest": {
+  "seed": 1234,
+  "context_length": 1024,
+  "tinystories_train_sample": 60000,
+  "tinystories_val": 1000,
+  "tinystories_test": 2000,
+  "everyday_val_fraction": 0.05,
+  "vocab_size": 104,
+  "report": {
+   "seed": 1234,
+   "context_length": 1024,
+   "created": "2026-09-16T17:08:01",
+   "tinystories": {
+    "source": "roneneldan/TinyStoriesInstruct (CDLA-Sharing-1.0; synthetic, GPT-3.5/GPT-4 generated)",
+    "train_file_records": 2476533,
+    "train_sampled": 60000,
+    "train_unparseable": 6,
+    "valid_file_records_parsed": 25026,
+    "valid_file_unparseable": 1,
+    "dedup": {
+     "train_removed_matching_val_or_test": 0,
+     "train_removed_duplicate_within_train": 0,
+     "val_removed_matching_test": 0,
+     "val_removed_duplicate_within_val": 0
+    },
+    "scan_seconds": 14.8
+   },
+   "everyday": {
+    "source": "HuggingFaceTB/everyday-conversations-llama3.1-2k (Apache-2.0; synthetic, Llama-3.1-70B generated)",
+    "official_train": 2260,
+    "official_test": 119,
+    "skipped_malformed": {
+     "train": 0,
+     "test": 0
+    },
+    "trailing_user_turn_trimmed": {
+     "train": 255,
+     "test": 13
+    },
+    "val_fraction_of_official_train": 0.05,
+    "dedup": {
+     "rule": "exact normalized conversation, or any shared normalized assistant turn of >= 40 chars",
+     "val_removed_matching_test": 1,
+     "train_removed_matching_val_or_test": 35,
+     "train_removed_duplicate_within_train": 0
+    }
+   },
+   "kb": {
+    "source": "Hand-written project knowledge base (nanollama/kb.py)",
+    "entries": {
+     "train": [
+      "algo_transformer",
+      "algo_naive_bayes",
+      "algo_self_attention",
+      "algo_random_forest",
+      "story_mars",
+      "story_rain",
+      "story_dragon",
+      "story_ocean",
+      "identity_rope",
+      "identity_training",
+      "identity_who",
+      "identity_kvcache",
+      "math_percent",
+      "math_linear",
+      "math_share",
+      "math_area",
+      "metric_precision_recall",
+      "metric_cv",
+      "metric_f1",
+      "metric_confusion",
+      "ml_unsupervised",
+      "ml_gradient_descent",
+      "ml_underfitting",
+      "ml_backprop",
+      "py_factorial",
+      "py_palindrome",
+      "py_fibonacci",
+      "py_prime",
+      "talk_thanks",
+      "talk_hello",
+      "talk_feeling",
+      "talk_bye"
+     ],
+     "val": [
+      "algo_kmeans",
+      "story_friendship",
+      "identity_rmsnorm",
+      "math_speed",
+      "metric_perplexity",
+      "ml_supervised",
+      "py_reverse",
+      "talk_joke"
+     ],
+     "test": [
+      "algo_pca",
+      "story_bedtime",
+      "identity_swiglu",
+      "math_apples",
+      "metric_accuracy",
+      "ml_overfitting",
+      "py_binary_search",
+      "talk_fact"
+     ]
+    },
+    "dialogues": {
+     "train": 285,
+     "val": 92,
+     "test": 92,
+     "rephrase": 32
+    },
+    "split_rule": "seeded per-topic split of entries before expansion: 1 val, 1 test, rest train; one paraphrase per train entry withheld as the rephrasing diagnostic"
+   },
+   "windows": {
+    "tinystories": {
+     "train": {
+      "examples": 59994,
+      "fit_directly": 20326,
+      "turn_windowed": 0,
+      "chunked": 39668,
+      "dropped": 0,
+      "windows": 111506,
+      "target_tokens": 50437275,
+      "chars_total": 70916479,
+      "chars_replaced": 4,
+      "drop_reasons": {},
+      "char_replacement_rate": 5.6404379580097315e-08
+     },
+     "val": {
+      "examples": 1000,
+      "fit_directly": 344,
+      "turn_windowed": 0,
+      "chunked": 656,
+      "dropped": 0,
+      "windows": 1907,
+      "target_tokens": 863500,
+      "chars_total": 1207644,
+      "chars_replaced": 0,
+      "drop_reasons": {},
+      "char_replacement_rate": 0.0
+     },
+     "test": {
+      "examples": 2000,
+      "fit_directly": 667,
+      "turn_windowed": 0,
+      "chunked": 1333,
+      "dropped": 0,
+      "windows": 3762,
+      "target_tokens": 1688587,
+      "chars_total": 2370756,
+      "chars_replaced": 0,
+      "drop_reasons": {},
+      "char_replacement_rate": 0.0
+     }
+    },
+    "everyday": {
+     "train": {
+      "examples": 2112,
+      "fit_directly": 2010,
+      "turn_windowed": 102,
+      "chunked": 0,
+      "dropped": 0,
+      "windows": 2214,
+      "target_tokens": 1030426,
+      "chars_total": 1555271,
+      "chars_replaced": 94,
+      "drop_reasons": {},
+      "char_replacement_rate": 6.0439627563299255e-05
+     },
+     "val": {
+      "examples": 112,
+      "fit_directly": 103,
+      "turn_windowed": 9,
+      "chunked": 0,
+      "dropped": 0,
+      "windows": 121,
+      "target_tokens": 54430,
+      "chars_total": 81928,
+      "chars_replaced": 3,
+      "drop_reasons": {},
+      "char_replacement_rate": 3.661751782052534e-05
+     },
+     "test": {
+      "examples": 119,
+      "fit_directly": 111,
+      "turn_windowed": 8,
+      "chunked": 0,
+      "dropped": 0,
+      "windows": 127,
+      "target_tokens": 58469,
+      "chars_total": 87030,
+      "chars_replaced": 8,
+      "drop_reasons": {},
+      "char_replacement_rate": 9.192232563483856e-05
+     }
+    },
+    "kb": {
+     "train": {
+      "examples": 285,
+      "fit_directly": 285,
+      "turn_windowed": 0,
+      "chunked": 0,
+      "dropped": 0,
+      "windows": 285,
+      "target_tokens": 52875,
+      "chars_total": 78733,
+      "chars_replaced": 0,
+      "drop_reasons": {},
+      "char_replacement_rate": 0.0
+     },
+     "val": {
+      "examples": 92,
+      "fit_directly": 92,
+      "turn_windowed": 0,
+      "chunked": 0,
+      "dropped": 0,
+      "windows": 92,
+      "target_tokens": 15508,
+      "chars_total": 24125,
+      "chars_replaced": 0,
+      "drop_reasons": {},
+      "char_replacement_rate": 0.0
+     },
+     "test": {
+      "examples": 92,
+      "fit_directly": 92,
+      "turn_windowed": 0,
+      "chunked": 0,
+      "dropped": 0,
+      "windows": 92,
+      "target_tokens": 19088,
+      "chars_total": 27712,
+      "chars_replaced": 0,
+      "drop_reasons": {},
+      "char_replacement_rate": 0.0
+     }
+    },
+    "kb_rephrase": {
+     "test": {
+      "examples": 32,
+      "fit_directly": 32,
+      "turn_windowed": 0,
+      "chunked": 0,
+      "dropped": 0,
+      "windows": 32,
+      "target_tokens": 5749,
+      "chars_total": 8170,
+      "chars_replaced": 0,
+      "drop_reasons": {},
+      "char_replacement_rate": 0.0
+     }
+    }
+   }
+  }
+ },
+ "mixture": {
+  "repeats": {
+   "tinystories": 1,
+   "everyday": 1,
+   "kb": 8
+  },
+  "target_tokens_unique": {
+   "tinystories": 50437275,
+   "everyday": 1030426,
+   "kb": 52875
+  },
+  "target_tokens_per_epoch": {
+   "tinystories": 50437275,
+   "everyday": 1030426,
+   "kb": 423000
+  },
+  "effective_share": {
+   "tinystories": 0.9719906269911444,
+   "everyday": 0.01985762343044855,
+   "kb": 0.008151749578407122
+  },
+  "note": "repeats apply to the training split only"
+ },
+ "max_story_windows": null
+}

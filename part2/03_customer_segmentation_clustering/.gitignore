@@ -1,0 +1,18 @@
+# Data (regenerable via `python -m segmentation.data --download`)
+data/raw/
+data/processed/
+
+# Model & analysis artifacts (regenerable via `python -m segmentation.pipeline`)
+artifacts/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Environment / editor
+.env
+.venv/
+.DS_Store

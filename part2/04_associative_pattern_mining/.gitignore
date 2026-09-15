@@ -1,0 +1,17 @@
+# Raw + processed data (regenerable via `python -m basket.data --download`)
+data/raw/
+data/processed/
+
+# Mining artifacts (regenerable via `python -m basket.pipeline` / `-m basket.autoresearch`)
+artifacts/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+
+# Environment / editor
+.env
+.venv/
+.DS_Store

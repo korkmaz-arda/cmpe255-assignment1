@@ -1,0 +1,13 @@
+product_id,product_name,aisle_id,department_id
+1,Alpha Apples,1,1
+2,Beta Bananas,1,1
+3,Gamma Grapes,1,1
+4,Delta Milk,2,2
+5,Epsilon Yogurt,2,2
+6,Zeta Seltzer Lime,3,3
+7,Eta Seltzer Berry,3,3
+8,Theta Seltzer Lemon,3,3
+9,Iota Seltzer Grapefruit,3,3
+10,Kappa Seltzer Plain,3,3
+11,Lambda Rare Item,2,2
+12,Mu Never Ordered,1,1

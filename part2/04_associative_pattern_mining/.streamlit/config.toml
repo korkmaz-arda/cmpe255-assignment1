@@ -1,0 +1,13 @@
+# Committed so that `streamlit run app/main.py` behaves identically on a clean
+# machine: no first-run onboarding prompt, no telemetry.
+
+[browser]
+# Opt out of Streamlit usage statistics. This also suppresses the first-run
+# "Welcome to Streamlit!" email prompt, which otherwise blocks startup when no
+# ~/.streamlit/credentials.toml exists.
+gatherUsageStats = false
+
+[server]
+# Skip the interactive-session email prompt and do not auto-open a browser tab.
+# The local URL is printed instead.
+headless = true

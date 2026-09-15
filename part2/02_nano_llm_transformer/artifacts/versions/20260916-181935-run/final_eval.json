@@ -1,0 +1,471 @@
+{
+ "version": "20260916-181935-run",
+ "finalized_at": "2026-09-16T19:00:32",
+ "finalize_count": 1,
+ "finalize_history": [
+  {
+   "at": "2026-09-16T19:00:32",
+   "forced": false
+  }
+ ],
+ "split": "final held-out test (not used for training or checkpoint selection)",
+ "decoding_for_samples": "canonical greedy default (temperature 0, repetition penalty 1.0, loop guard off, max 300 new characters) - identical to the live chat default",
+ "decoding_settings": {
+  "temperature": 0.0,
+  "top_p": 0.9,
+  "top_k": 40,
+  "repetition_penalty": 1.0,
+  "max_new_tokens": 300,
+  "loop_guard": false,
+  "seed": null
+ },
+ "loop_guard_for_samples": false,
+ "similarity_definition": "difflib SequenceMatcher ratio between the greedy reply and the reference answer: 2 x matching characters / total characters, in [0, 1]. Descriptive only.",
+ "unigram_reference_definition": "add-one-smoothed character frequencies of the matching source's training targets, scored on the same test positions (context-free baseline)",
+ "sources": {
+  "tinystories": {
+   "label": "TinyStories held-out test (seeded subset of the official validation file, disjoint from val)",
+   "loss": 0.4262269626056986,
+   "perplexity": 1.5314683217325598,
+   "target_tokens": 1688587,
+   "windows": 3762,
+   "unigram_reference": {
+    "loss": 3.0522584741933203,
+    "perplexity": 21.163086775144325
+   },
+   "samples": [
+    {
+     "id": "tinystories:valid:11924",
+     "message": "Write a short story for young children.\nUse these words: think, sugar, good.\nStory features: Dialogue.\nSummary: Amy makes a cake with her mom using a big jar of sugar and shares it with their family.",
+     "history_turns": 0,
+     "reference": "Once upon a time, there was a little girl named Amy. She liked to play outside and think about fun things. One day, she saw a big jar of sugar on the kitchen table. Amy thought it would be a good idea to make a cake.\nAmy's mom came into the kitchen and saw her. \"Amy, what are you doing?\" she asked. \"I want to make a cake with this sugar,\" Amy said. \"That's a good idea,\" her mom replied. \"Let's bake a cake together!\"\nAmy and her mom mixed the sugar with other things to make the cake. They put it in the oven and waited. When the cake was done, they took it out and let it cool. Then, they shared the cake with their family. Everyone said it was a very good cake. Amy felt happy that she had thought of making a cake with the sugar.",
+     "reply": "Once upon a time, there was a little girl named Amy. She loved to play with her toys and run around the house. One day, her mom said, \"Amy, we must think a sugar in the world. We need to make a cake for the sugar.\"\nAmy was excited and asked, \"Can I make a cake with the sugar?\" Her mom said, \"Yes, yo"
+    },
+    {
+     "id": "tinystories:valid:11486",
+     "message": "Write a short story for young children.\nUse these words: polish, foot, grumpy.\nSummary: A grumpy bear discovers that polishing things makes him feel better and becomes happy after polishing everything he finds, including his own feet.",
+     "history_turns": 0,
+     "reference": "Once upon a time, there was a grumpy bear. He had big feet that he used to stomp around the forest. One day, he found a shiny rock and decided to polish it with his paw. As he polished the rock, he started to feel happier. He realized that polishing things made him feel better. From that day on, he polished everything he found, including his own feet! And he was never grumpy again.",
+     "reply": "Once upon a time, there was a grumpy bear. He lived in a big forest with lots of trees and flowers. One day, he decided to polish the food in the forest. He polished it and it was very hard.\nHe polished the food in the forest and started to polish it. He polished it and soon he was all around him. H"
+    },
+    {
+     "id": "tinystories:valid:20225",
+     "message": "Write a short story for young children.\nUse these words: stretch, sight, boring.\nStory features: Dialogue.\nSummary: Lily is bored and wants to climb a tree, but can't reach the branch. Her friend Tom comes with a rope and they climb the tree together, having fun and discovering new sights.",
+     "history_turns": 0,
+     "reference": "Lily was bored. She had nothing to do. She looked out the window and saw a big tree. She wanted to climb the tree and see what was up there. Maybe she could find a bird or a squirrel or a nest.\nShe put on her shoes and ran outside. She found the tree and looked for a branch to grab. But the branch was too high. She jumped and jumped, but she could not reach it. She felt sad.\n\"Hello, Lily,\" said a voice. Lily turned around and saw Tom, her friend from next door. He had a big smile and a long rope. \"Do you want to play with me?\"\n\"Yes, please,\" said Lily. \"What do you have?\"\n\"I have a rope. We can use it to climb the tree. Watch me.\" Tom tied one end of the rope to the branch and threw the other end to the ground. He pulled the rope and stretched his arms and legs. He climbed up the rope like a monkey. He reached the branch and looked around. He saw a lot of things. He saw the sky and the clouds and the sun. He saw the houses and the cars and the people. He saw a bird and a squirrel and a nest. He saw a new sight.\n\"Wow, this is fun!\" he said. \"Come on, Lily, you can do it too!\"\nLily grabbed the rope and tried to climb. It was hard at first, but she did not give up. She pulled the rope and stretched her arms and legs. She climbed up the rope like a cat. She reached the branch and joined Tom. She looked around and saw what he saw. She saw a new sight.\n\"Wow, this is fun!\" she said. \"Thank you, Tom, for sharing your rope!\"\nThey smiled and hugged. They played on the tree for a long time. They saw more things and heard more sounds. They had a lot of fun. They were not bored anymore. They were happy.",
+     "reply": "Lily and Tom were bored. They wanted to climb a big tree. They saw a big tree with many branches. They wanted to climb the tree.\n\"Let's climb the tree!\" Lily said. \"Maybe there is a big tree with many branches.\"\n\"OK!\" Tom said. \"But we have to be careful. The tree is too high and too high.\"\nThey ran"
+    },
+    {
+     "id": "tinystories:valid:1109",
+     "message": "Write a short story for young children.\nUse these words: restore, fire, fair.\nSummary: A big fire in the forest scared the animals, but firefighters came to help and put out the fire. They worked hard to restore the forest so the animals could live there again.",
+     "history_turns": 0,
+     "reference": "Once upon a time, there was a big fire in the forest. The fire was very hot and made the animals scared. The firefighters came to help and put out the fire with water. They worked hard to restore the forest so the animals could live there again.\nThe animals were happy when they saw the forest was fair and green again. They played and ate berries from the trees. The firefighters were happy too, because they knew they had helped the animals and saved the forest from the fire.",
+     "reply": "Once upon a time, there was a big fire. The fire was very fair and loved to play in the forest. One day, the fire saw a big fire in the forest. The fire was very fair and loved to play with the animals.\nThe fire was very fair and loved to play with the animals. They would run and jump and have fun. "
+    },
+    {
+     "id": "tinystories:valid:22380",
+     "message": "Write a short story for young children.\nSummary: Teddy gets dirty while playing outside and his mommy washes his clothes gently. Later, when a scary dog approaches, Teddy's mommy protects him and he feels safe and grateful.",
+     "history_turns": 0,
+     "reference": "Once upon a time, there was a little bear named Teddy. Teddy loved to play outside in the sunshine and run around with his friends. One day, while he was playing, he got very dirty and his mommy had to wash his clothes in the laundry.\nTeddy's mommy was very gentle with his clothes, making sure they didn't get ruined. Teddy liked when his mommy was gentle with his things. He felt very happy and safe.\nLater that day, while Teddy was playing with his friends, a big scary dog came running towards them. Teddy's mommy quickly ran over and protected them from the dog. Teddy felt very thankful that his mommy was there to keep them safe.\nFrom that day on, Teddy knew that his mommy would always protect him and keep him safe, just like she was gentle with his laundry. Teddy felt very lucky to have such a great mommy. The end.",
+     "reply": "Once upon a time, there was a little boy named Teddy. Teddy loved to play outside with his friends. One day, Teddy's mommy gave him a clothes to wash his clothes. Teddy was so excited to see what he could do with it.\nAs Teddy was playing, he accidentally dropped his clothes and it broke into many pi"
+    }
+   ]
+  },
+  "everyday": {
+   "label": "Everyday Conversations official test split",
+   "loss": 0.8694979190361559,
+   "perplexity": 2.3857127318245475,
+   "target_tokens": 58469,
+   "windows": 127,
+   "unigram_reference": {
+    "loss": 3.110555298015509,
+    "perplexity": 22.433498219678167
+   },
+   "samples": [
+    {
+     "id": "everyday:test:4",
+     "message": "What is a shadow?",
+     "history_turns": 2,
+     "reference": "A shadow is the dark area that appears on the ground or on other surfaces when something or someone blocks the light from shining on those areas.",
+     "reply": "A shadow is a shadow of a shadow of a shadow of a shadow of a shadow of a shadow of a shadow."
+    },
+    {
+     "id": "everyday:test:6",
+     "message": "I have two cats and a dog, and sometimes they fight. Why do you think they do this?",
+     "history_turns": 2,
+     "reference": "That's not uncommon in multi-pet households. They might be competing for food, attention, or space. You can try separating their resources and providing individual areas for each pet.",
+     "reply": "That's great! Dogs are a great team today, but they can also be a great team to consider the dog to the same time."
+    },
+    {
+     "id": "everyday:test:10",
+     "message": "I'm trying to manage my budget and I'm having trouble deciding what I should spend my money on. Can you help me figure out what I need versus what I want?",
+     "history_turns": 2,
+     "reference": "Of course, I'd be happy to help. Generally, needs are essential items like food, rent, and utilities. Wants are things that bring you joy, but you could live without, like dining out or buying new clothes.",
+     "reply": "It's usually a good idea to spend money on your budget, and it's a good idea to spend money on your budget and start with a specific white specific white specific white specific white specific white specific white specific white specific white specific white specific white specific white specific wh"
+    },
+    {
+     "id": "everyday:test:86",
+     "message": "I'm worried about my roof. What's the best way to clean my gutters?",
+     "history_turns": 2,
+     "reference": "Cleaning gutters is an essential part of roof maintenance. You can use a ladder, gloves, and a scoop or trowel to remove leaves and debris. Make sure to flush the gutters with water afterward.",
+     "reply": "The best way to clean your roof is to clean your roof or some popular cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest cleanest clean"
+    },
+    {
+     "id": "everyday:test:102",
+     "message": "I have a home recording studio and I'm having trouble with echo. What can I do to reduce it?",
+     "history_turns": 2,
+     "reference": "To reduce echo, you can use sound-absorbing materials like acoustic panels or soundproofing foam on your walls and ceiling.",
+     "reply": "You can try reducing a studio or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community or a community "
+    }
+   ]
+  },
+  "kb": {
+   "label": "Knowledge-base final-test entries (answers never seen in training)",
+   "loss": 3.190900113536646,
+   "perplexity": 24.310299627667888,
+   "target_tokens": 19088,
+   "windows": 92,
+   "unigram_reference": {
+    "loss": 3.1250713169467788,
+    "perplexity": 22.76151831763481
+   },
+   "mean_similarity": 0.2170440449537314,
+   "samples": [
+    {
+     "id": "kb:algo_pca:q0:assistant",
+     "message": "What is PCA?",
+     "history_turns": 0,
+     "reference": "PCA finds the directions along which the data varies the most. It projects the data onto the first few of these principal components, which reduces the number of dimensions while keeping as much variance as possible.",
+     "reply": "Hellow trains program, s p earture weights program2 * 3 = 12. Check enounce while 5 * 0 c.",
+     "similarity": 0.2679738562091503
+    },
+    {
+     "id": "kb:story_bedtime:q0:assistant",
+     "message": "Tell me a bedtime story.",
+     "history_turns": 0,
+     "reference": "Once upon a time, a little owl named Pip could not fall asleep. Pip counted the stars, one by one, until the moon smiled down. \"Rest now,\" said the moon. Pip tucked his head under his soft wing, listened to the quiet wind, and drifted into a happy dream. The end.",
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "similarity": 0.12133891213389121
+    },
+    {
+     "id": "kb:identity_swiglu:q0:assistant",
+     "message": "What is SwiGLU?",
+     "history_turns": 0,
+     "reference": "SwiGLU is the feed-forward part of each block. The input goes through two projections. One passes through the SiLU activation and acts as a gate, and the two results are multiplied together. A third projection maps the result back to the model width.",
+     "reply": "Glorting the sun was trained to look fzorta look lhhousage and hello. Each top reeure helpect it found ff values. But each training and moves the bredhries well and for examiusmer. only computes the values, a small hellops at the both stop talking .",
+     "similarity": 0.23647294589178355
+    },
+    {
+     "id": "kb:math_apples:q0:assistant",
+     "message": "If I have 3 apples and buy 5 more, how many apples do I have?",
+     "history_turns": 0,
+     "reference": "Start with 3 apples. Add 5 more: 3 + 5 = 8. You have 8 apples.",
+     "reply": "You can try taking a big bouquet or states or states or states or states or states or states or states or states or states or state or state or state. You can also try apples and buy statement or statement or statement or statement.",
+     "similarity": 0.10884353741496598
+    },
+    {
+     "id": "kb:metric_accuracy:q0:assistant",
+     "message": "What is accuracy?",
+     "history_turns": 0,
+     "reference": "Accuracy is the share of predictions that are correct. It can be misleading when classes are imbalanced: if 99 out of 100 emails are not spam, always saying not spam is 99 percent accurate but useless.",
+     "reply": "A KV cacuracdcare can we there tou = 2\n   f t tobeinlder(n). The moral of 5 day * 1\n    return t = 1\n    2\n   creased both returned to a big number phone layer of numbers.",
+     "similarity": 0.26344086021505375
+    },
+    {
+     "id": "kb:ml_overfitting:q0:assistant",
+     "message": "What is overfitting?",
+     "history_turns": 0,
+     "reference": "Overfitting happens when a model learns the training data too closely, including its noise, and does worse on new data. A common sign is training loss that keeps falling while validation loss starts to rise.",
+     "reply": "I zop a positible lagaD aurattreath too. Each too charmer to capture interaction and I want to capture the chain into trtails about the only when a small amount is the straight. It gives the whole of the amount of the Iatient character and the I am a model.",
+     "similarity": 0.24568965517241378
+    },
+    {
+     "id": "kb:py_binary_search:q0:assistant",
+     "message": "Write binary search in Python.",
+     "history_turns": 0,
+     "reference": "Binary search works on a sorted list:\n\ndef binary_search(items, target):\n    lo, hi = 0, len(items) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if items[mid] == target:\n            return mid\n        if items[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1",
+     "reply": "Here is a simple loop:\n\ndef face is the shorelow job and no one can exmble. On the water the land has a simple size and the descenipes of the arrows or the shore. A silver is a single singlesment with a single singlesment.",
+     "similarity": 0.24074074074074073
+    },
+    {
+     "id": "kb:talk_fact:q0:assistant",
+     "message": "Tell me a fun fact.",
+     "history_turns": 0,
+     "reference": "Octopuses have three hearts. Two pump blood to the gills, and one pumps it to the rest of the body.",
+     "reply": "You are welcome! I am happy to help.",
+     "similarity": 0.2518518518518518
+    }
+   ]
+  },
+  "kb_rephrase": {
+   "label": "Knowledge-base rephrasing diagnostic: new wording; answer seen during training",
+   "loss": 0.025166799346557554,
+   "perplexity": 1.025486156680511,
+   "target_tokens": 5749,
+   "windows": 32,
+   "unigram_reference": {
+    "loss": 3.1496618583781415,
+    "perplexity": 23.32817502018713
+   },
+   "mean_similarity": 0.6766090669246172,
+   "samples": [
+    {
+     "id": "kb:algo_transformer:q3:assistant",
+     "message": "What are the parts of a transformer block?",
+     "history_turns": 0,
+     "reference": "A transformer is a neural network built from repeated blocks. Each block has a self-attention layer, which mixes information between positions, and a feed-forward layer, which transforms each position. Residual connections and normalization keep training stable.",
+     "reply": "Mia and her robot Bolt flew their small ship to Mars. The ground was red and dusty, and the sky was pink. Bolt found a shiny rock and gave it to Mia. They planted a tiny flag, waved at Earth far away, and flew home to tell everyone what they saw.",
+     "similarity": 0.29133858267716534
+    },
+    {
+     "id": "kb:algo_naive_bayes:q0:assistant",
+     "message": "What is Naive Bayes?",
+     "history_turns": 0,
+     "reference": "Naive Bayes is a classifier based on Bayes' rule. It is called naive because it assumes the features are independent given the class. It is fast and often works well for text.",
+     "reply": "Naive Bayes is a classifier based on Bayes' rule. It is called naive because it assumes the features are independent given the class. It is fast and often works well for text.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:algo_self_attention:q0:assistant",
+     "message": "What is self-attention?",
+     "history_turns": 0,
+     "reference": "Self-attention lets each token look at other tokens. Each token makes a query, a key and a value. The query is compared with every key, the scores go through softmax, and the result is a weighted average of the values.",
+     "reply": "Self-attention lets each token look at other tokens. Each token makes a query, a key and a value. The query is compared with every key, the scores go through softmax, and the result is a weighted average of the values.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:algo_random_forest:q2:assistant",
+     "message": "How does a random forest work?",
+     "history_turns": 0,
+     "reference": "A random forest trains many decision trees, each on a bootstrap sample of the data and with a random subset of features at each split. It averages their votes, which reduces the variance of a single tree.",
+     "reply": "A random forest trains many decision trees, each on a bootstrap sample of the data and with a random subset of features at each split. It averages their votes, which reduces the variance of a single tree.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:story_mars:q1:assistant",
+     "message": "Write a short story about a trip to Mars.",
+     "history_turns": 0,
+     "reference": "Mia and her robot Bolt flew their small ship to Mars. The ground was red and dusty, and the sky was pink. Bolt found a shiny rock and gave it to Mia. They planted a tiny flag, waved at Earth far away, and flew home to tell everyone what they saw.",
+     "reply": "Mia and her robot Bolt flew their small ship to Mars. The ground was red and dusty, and the sky was pink. Bolt found a shiny rock and gave it to Mia. They planted a tiny flag, waved at Earth far away, and flew home to tell everyone what they saw.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:story_rain:q1:assistant",
+     "message": "Write a story about rain.",
+     "history_turns": 0,
+     "reference": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "reply": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "similarity": 0.21182266009852216
+    },
+    {
+     "id": "kb:story_dragon:q0:assistant",
+     "message": "Tell me a story about a friendly dragon.",
+     "history_turns": 0,
+     "reference": "In a green valley lived a dragon named Ember who was afraid of her own fire. One cold night the village lamps went out. Ember took a deep breath and lit them all with a small, warm flame. The children cheered, and Ember was never afraid of her fire again.",
+     "reply": "In a green valley lived a dragon named Ember who was afraid of her own fire. One cold night the village lamps went out. Ember took a deep breath and lit them all with a small, warm flame. The children cheered, and Ember was never afraid of her fire again.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:story_ocean:q1:assistant",
+     "message": "Write a story about a little fish.",
+     "history_turns": 0,
+     "reference": "A little fish named Finn wanted to see the top of the sea. He swam up past the coral and the turtles until he saw the bright sun. A seagull said hello. Finn waved his fin, then swam back down to tell his mother about the sky.",
+     "reply": "It rained all morning, and Ben felt sad. His grandma gave him yellow boots. Ben jumped in the biggest puddle and made a huge splash. A frog jumped too. Ben laughed and decided that rainy days could be fun after all.",
+     "similarity": 0.2909090909090909
+    },
+    {
+     "id": "kb:identity_rope:q2:assistant",
+     "message": "Explain rotary embeddings.",
+     "history_turns": 0,
+     "reference": "RoPE means rotary position embeddings. Each query and key vector is split into pairs of numbers, and each pair is rotated by an angle that grows with the position. When a query and a key are compared, only the difference in their positions changes the result, so attention can use relative distance.",
+     "reply": "Rotary is the share of predicted positives that are really positive: TP / (TP + FP). Rotish and unithermed positives from the output in the iverume of rotation that weights go the opposition.",
+     "similarity": 0.2816326530612245
+    },
+    {
+     "id": "kb:identity_training:q1:assistant",
+     "message": "What data were you trained on?",
+     "history_turns": 0,
+     "reference": "I was trained from random weights to predict the next character. My data is a mix of synthetic children's stories, synthetic small-talk conversations and a small hand-written knowledge base. The loss was only computed on the assistant replies.",
+     "reply": "I was trained from random weights to predict the next character. My data is a mix of synthetic children's stories, synthetic small-talk conversations and a small hand-written knowledge base. The loss was only computed on the assistant replies.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:identity_who:q3:assistant",
+     "message": "What are you?",
+     "history_turns": 0,
+     "reference": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "reply": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:identity_kvcache:q3:assistant",
+     "message": "Explain the KV cache.",
+     "history_turns": 0,
+     "reference": "A KV cache stores the keys and values of tokens that were already processed. When I generate the next character, I only compute the new token and let it attend to the stored keys and values, instead of running the whole sequence again.",
+     "reply": "A KV cache stores the keys and values of tokens that were already processed. When I generate the next character, I only compute the new token and let it attend to the stored keys and values, instead of running the whole sequence again.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:math_percent:q2:assistant",
+     "message": "How much is twenty percent of fifty?",
+     "history_turns": 0,
+     "reference": "20 percent means 20 / 100 = 0.2. Then 0.2 * 50 = 10. So 20 percent of 50 is 10.",
+     "reply": "Hellow passions the clean massive computers the data and a language model to every weight. It is say you've been depending to a small language from between the split.",
+     "similarity": 0.17959183673469387
+    },
+    {
+     "id": "kb:math_linear:q3:assistant",
+     "message": "How do I solve 2x plus 3 equals 11?",
+     "history_turns": 0,
+     "reference": "Subtract 3 from both sides: 2x = 8. Divide both sides by 2: x = 4. Check: 2 * 4 + 3 = 11.",
+     "reply": "20 careenes 20 = 24. So 20 careenes 20 is 24.",
+     "similarity": 0.29850746268656714
+    },
+    {
+     "id": "kb:math_share:q2:assistant",
+     "message": "12 cookies and 4 friends, how many each?",
+     "history_turns": 0,
+     "reference": "Divide the cookies by the number of friends: 12 / 4 = 3. Each friend gets 3 cookies.",
+     "reply": "Divide the cookies by the number of friends: 12 / 4 = 3. Each friend gets 3 cookies.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:math_area:q0:assistant",
+     "message": "What is the area of a rectangle 4 by 6?",
+     "history_turns": 0,
+     "reference": "The area of a rectangle is width times length: 4 * 6 = 24. The area is 24 square units.",
+     "reply": "about for the area the area of the area of the area of the area of the area in the park stations when the area in the park is a model d). Only the bottom of the area in the area of a sunset.",
+     "similarity": 0.1299638989169675
+    },
+    {
+     "id": "kb:metric_precision_recall:q3:assistant",
+     "message": "Define precision and recall.",
+     "history_turns": 0,
+     "reference": "Precision is the share of predicted positives that are really positive: TP / (TP + FP). Recall is the share of real positives that the model found: TP / (TP + FN).",
+     "reply": "Precision is the share of predicted positives that are really positive: TP / (TP + FP). Recall is the share of real positives that the model found: TP / (TP + FN).",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:metric_cv:q2:assistant",
+     "message": "How does cross validation work?",
+     "history_turns": 0,
+     "reference": "In k-fold cross-validation the data is split into k parts. The model is trained k times, each time holding out a different part for evaluation, and the scores are averaged. It gives a more stable estimate than a single split.",
+     "reply": "Compare the cleaned string with its reverse:\n\ndef is_palindrome(s):\n    t = \"\".join(c.lower() for c in s if c.isalnum())\n    return t == t[::-1]\n\nprint(is_palindrome(\"Race car\"))  # True",
+     "similarity": 0.20437956204379562
+    },
+    {
+     "id": "kb:metric_f1:q0:assistant",
+     "message": "What is the F1 score?",
+     "history_turns": 0,
+     "reference": "The F1 score is the harmonic mean of precision and recall: 2 * P * R / (P + R). It is high only when both precision and recall are high.",
+     "reply": "The F1 score is the harmonic mean of precision and recall: 2 * P * R / (P + R). It is high only when both precision and recall are high.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:metric_confusion:q1:assistant",
+     "message": "Explain a confusion matrix.",
+     "history_turns": 0,
+     "reference": "A confusion matrix counts predictions against true labels. For two classes it has four cells: true positives, false positives, false negatives and true negatives. Most classification metrics are computed from these counts.",
+     "reply": "A confusion matrix counts predictions against true labels. For two classes it has four cells: true positives, false positives, false negatives and true negatives. Most classification metrics are computed from these counts.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:ml_unsupervised:q0:assistant",
+     "message": "What is unsupervised learning?",
+     "history_turns": 0,
+     "reference": "Unsupervised learning finds structure in data that has no labels. Common examples are clustering, which groups similar points, and dimensionality reduction, which finds a smaller set of directions that keeps most of the information.",
+     "reply": "Unsupervised learning finds structure in data that has no labels. Common examples are clustering, which groups similar points, and dimensionality reduction, which finds a smaller set of directions that keeps most of the information.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:ml_gradient_descent:q3:assistant",
+     "message": "What does the learning rate do in gradient descent?",
+     "history_turns": 0,
+     "reference": "Gradient descent lowers a loss step by step. At each step it computes the gradient and moves the weights a small amount in the opposite direction. The learning rate sets the step size: too large can diverge, too small is slow.",
+     "reply": "Gradient descent lowers a loss step by step. At each step it computes the gradient and moves the weights a small amount in the opposite direction. The learning rate sets the step size: too large can diverge, too small is slow.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:ml_underfitting:q2:assistant",
+     "message": "What does it mean when a model underfits?",
+     "history_turns": 0,
+     "reference": "Underfitting happens when a model is too simple or trained too little to capture the pattern in the data. Both training and validation error stay high. A bigger model, better features or longer training can help.",
+     "reply": "Underfitting happens when a model is too simple or trained too little to capture the pattern in the data. Both training and validation error stay high. A bigger model, better features or longer training can help.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:ml_backprop:q3:assistant",
+     "message": "How are gradients computed in a neural network?",
+     "history_turns": 0,
+     "reference": "Backpropagation computes the gradient of the loss with respect to every weight. It applies the chain rule from the output layer back to the input layer, reusing intermediate results so the whole gradient costs about as much as one extra forward pass.",
+     "reply": "Uradeverse most in thu:\n\ndef cera(nup is too borinalized while I can rear. It also lifted by gear search reage out from the NAP. Then, one co.    features of varianing positions and training is often under the model.",
+     "similarity": 0.22746781115879827
+    },
+    {
+     "id": "kb:py_factorial:q1:assistant",
+     "message": "How do I compute a factorial in Python?",
+     "history_turns": 0,
+     "reference": "Here is a simple loop:\n\ndef factorial(n):\n    result = 1\n    for i in range(2, n + 1):\n        result *= i\n    return result\n\nprint(factorial(5))  # 120",
+     "reply": "Here is a simple loop:\n\ndef factorial(n):\n     result = 1\n    while i * is R0\n    while i i <= ? n:\n       n = 0:\n       a toul job 1\n       result *= 1\n    return t == 1\n    return True\n\nprint(is_prihc",
+     "similarity": 0.6384180790960452
+    },
+    {
+     "id": "kb:py_palindrome:q2:assistant",
+     "message": "Python function to test if a word is a palindrome.",
+     "history_turns": 0,
+     "reference": "Compare the cleaned string with its reverse:\n\ndef is_palindrome(s):\n    t = \"\".join(c.lower() for c in s if c.isalnum())\n    return t == t[::-1]\n\nprint(is_palindrome(\"Race car\"))  # True",
+     "reply": "A little fish named Finn wanted to see the top of the sea. He swam up past the coral and the turtles until he saw the bright sun. A seagull said hello. Finn waved his fin, then swam back down to tell his mother about the sky.",
+     "similarity": 0.1362530413625304
+    },
+    {
+     "id": "kb:py_fibonacci:q2:assistant",
+     "message": "Python code for the Fibonacci sequence.",
+     "history_turns": 0,
+     "reference": "Here is an iterative version:\n\ndef fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n\nprint([fib(i) for i in range(8)])  # [0, 1, 1, 2, 3, 5, 8, 13]",
+     "reply": "Here is an iterative version:\n\ndef fib(n):\n    a, b = 0, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a\n\nprint([fib(i) for i in range(8)])  # [0, 1, 1, 2, 3, 5, 8, 13]",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:py_prime:q3:assistant",
+     "message": "Is there a simple way to check primes in Python?",
+     "history_turns": 0,
+     "reference": "Check divisors up to the square root:\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n\nprint(is_prime(17))  # True",
+     "reply": "Check divisors up to the square root:\n\ndef is_prime(n):\n    if n < 2:\n        return False\n    i = 2\n    while i * i <= n:\n        if n % i == 0:\n            return False\n        i += 1\n    return True\n\nprint(is_prime(17))  # True",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:talk_thanks:q0:assistant",
+     "message": "Thank you!",
+     "history_turns": 0,
+     "reference": "You are welcome! I am happy to help.",
+     "reply": "You are welcome! I am happy to help.",
+     "similarity": 1.0
+    },
+    {
+     "id": "kb:talk_hello:q2:assistant",
+     "message": "Hey, how are you?",
+     "history_turns": 0,
+     "reference": "Hello! I am NanoLlama. How can I help you today?",
+     "reply": "I am a common attraction and winter that offers more popular than the other that involves the other that involves the other that involves the other that involves the other that involves the other that involve the other that involve the other that involve the other that involve the other that involve",
+     "similarity": 0.10344827586206896
+    },
+    {
+     "id": "kb:talk_feeling:q2:assistant",
+     "message": "How is your day going?",
+     "history_turns": 0,
+     "reference": "I am a small computer program, so I do not have feelings. But I am ready to help you!",
+     "reply": "I am NanoLlama, a very small language model. I was trained from scratch on this machine, and I read and write one character at a time. I can make mistakes, so please check anything important.",
+     "similarity": 0.2971014492753623
+    },
+    {
+     "id": "kb:talk_bye:q3:assistant",
+     "message": "I have to go now.",
+     "history_turns": 0,
+     "reference": "Goodbye! Have a nice day.",
+     "reply": "You are welcome! I am happy to help.",
+     "similarity": 0.36065573770491804
+    }
+   ]
+  }
+ }
+}
