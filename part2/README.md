@@ -13,4 +13,4 @@ Each project is self-contained; see its own README for setup and details.
 
 ## Video
 
-**Part 2 YouTube Walkthrough:** [Link to be added]
+**Part 2 YouTube Walkthrough:** https://www.youtube.com/watch?v=D5yAllfOj3c
