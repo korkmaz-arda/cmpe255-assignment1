@@ -90,4 +90,4 @@ the notebook (`X`/`y`, `X_train`/`X_test`, `models`, etc.).
 
 **Claude Code transcript:** `claude-code-session.html`
 
-**YouTube walkthrough:** [Link to be added]
+**YouTube walkthrough:** https://youtu.be/PXx1CogWp9Q
